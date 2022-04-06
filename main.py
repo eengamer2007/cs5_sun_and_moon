@@ -24,12 +24,14 @@ def main():
     time = 0.27
     stuf = 0.0
     current = 1
+
     while running:
         last = stuf
         stuf = (pygame.time.get_ticks() / 1000.0)
         delta = stuf - last
         time += (delta / SPEED_MODIFIER) * ((MOON_SPEED * current) + (SUN_SPEED * (current * -1 + 1)))
         #print(time)
+        
         if current:
             moon_time = time
             location = (
@@ -42,6 +44,7 @@ def main():
             print("sun")
             surface.fill((0,0,0))
             pygame.draw.circle(surface, (194,197,204), location, PLANET_RADIUS)
+
         else:
             sun_time = time
             location = (
@@ -54,9 +57,11 @@ def main():
             print("moon")
             surface.fill((255,255,255))
             pygame.draw.circle(surface, (255,255,0), location, PLANET_RADIUS)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+
         pygame.draw.circle(surface, (0,255,0), (WIN_WIDTH/2,2*WIN_HEIGHT + 100), EARTH_RADIUS)
         pygame.display.flip()
 
